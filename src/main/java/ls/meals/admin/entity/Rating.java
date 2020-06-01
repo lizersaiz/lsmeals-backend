@@ -16,6 +16,13 @@ public class Rating {
     @Column(name="id")
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.MERGE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH,
+                    CascadeType.PERSIST})
+    private Meal meal;
+
     @Column(name="rating_stars", nullable = false)
     private Integer ratingStars;
 

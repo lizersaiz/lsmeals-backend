@@ -18,8 +18,7 @@ public class Customer {
     @Column(name="id")
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Delivery> deliveries = new HashSet<>();
 
     @Column(name="first_name", nullable = true)

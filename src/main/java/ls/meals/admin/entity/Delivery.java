@@ -51,9 +51,16 @@ public class Delivery {
             fetch = FetchType.LAZY)
     @JoinTable(
             name="delivery_meal",
-            joinColumns = @JoinColumn(name = "meal_id"),
-            inverseJoinColumns = @JoinColumn(name = "delivery_id"))
+            joinColumns = @JoinColumn(name = "delivery_id"),
+            inverseJoinColumns = @JoinColumn(name = "meal_id"))
     private Set<Meal> deliveryMeals;
+
+    @ManyToOne(fetch = FetchType.LAZY,
+                cascade = {CascadeType.MERGE,
+                            CascadeType.DETACH,
+                            CascadeType.REFRESH,
+                            CascadeType.PERSIST})
+    private Customer customer;
 
     private Date date;
 

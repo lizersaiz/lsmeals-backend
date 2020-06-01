@@ -21,13 +21,13 @@ public class Meal {
     @ManyToMany
     @JoinTable(
             name="delivery_meal",
-            joinColumns = @JoinColumn(name = "delivery_id"),
-            inverseJoinColumns = @JoinColumn(name = "meal_id"))
+            joinColumns = @JoinColumn(name = "meal_id"),
+            inverseJoinColumns = @JoinColumn(name = "delivery_id"))
     private Set<Delivery> deliveryMeals;
 
-    @OneToMany(cascade = CascadeType.ALL,
-               fetch = FetchType.LAZY)
-    @JoinColumn(name = "meal_id")
+    @OneToMany(mappedBy = "meal",
+                cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY)
     private Set<Rating> mealRating = new HashSet<>();
 
     @Column(name="name", nullable = false)
